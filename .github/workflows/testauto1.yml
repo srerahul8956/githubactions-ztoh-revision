@@ -1,0 +1,24 @@
+name: test auto1
+
+on:
+  - workflow_dispatch
+
+jobs:
+  code:
+   runs-on: ubuntu-latest
+   steps:
+     - name: write code
+       run: echo "Developer has written the code"
+  
+  test:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Test the code 
+       run: echo "testing code"
+  
+  deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - name: deploy the code 
+       run: echo "deploy the code"
+  

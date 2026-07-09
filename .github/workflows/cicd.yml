@@ -22,7 +22,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: Test the container 
-         run: echo "Testing the Container"background"
+         run: echo "Testing the Container background"
 
     deploy:
      runs-on: ubuntu-latest

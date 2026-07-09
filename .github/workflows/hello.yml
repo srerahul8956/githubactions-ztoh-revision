@@ -13,7 +13,7 @@ jobs:
     greet:
         #this is a github runner, each job runs on a runner
         runs-on:
-          - ubuntu-slim
+          - ubuntu-latest
         steps:
             - name: say hellow to users
               run: echo "Hello dosto"

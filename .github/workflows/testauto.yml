@@ -1,0 +1,22 @@
+name: test auto
+
+on:
+ push:
+   branches: main
+
+jobs:
+  greet:
+   runs-on: ubuntu-latest
+   steps:
+     - name: say hello to user
+       run: echo "Hello Rahul"
+  
+  bye:
+   runs-on: ubuntu-latest
+   steps:
+     - name: say hello to runner 
+       run: eecho "Hello $USER"
+       
+
+ 
+   

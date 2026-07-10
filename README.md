@@ -4,9 +4,13 @@ name: Rahul
 location: Pune
 dob: 30/03/1995
 
+# every job needs seperate runner, this is called parallelism, so all runners can run seperately in parallel
+jobs:
+
 hobbies:
   -learning
   -reading
   -implementing
 
   
+- (Hello) [.github/workflows/hello.yml]

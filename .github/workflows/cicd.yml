@@ -2,8 +2,19 @@
 name: CICD
 
 # should run manually, on manual click (delvier) workflow whenever user needs
-on:
-  - workflow_dispatch
+on: 
+ workflow_dispatch:
+  inputs:
+    environment:
+     description: Select the environment where this workflow runs
+     default: 'dev'
+     required: true
+     type: choice
+     options:
+       - dev
+       - prod
+       - staging
+       
 
 jobs:
     code:

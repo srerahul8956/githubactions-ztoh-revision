@@ -1,101 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassmorphism Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(135deg,#09111d,#182848,#4b6cb7);
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Animated Background */
+
+body::before,
+body::after{
+    content:'';
+    position:fixed;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:-2;
+    animation:move 20s infinite alternate ease-in-out;
+}
+
+body::before{
+    background:#00e5ff55;
+    top:-150px;
+    left:-150px;
+}
+
+body::after{
+    background:#ff00cc44;
+    bottom:-200px;
+    right:-200px;
+    animation-delay:8s;
+}
+
+@keyframes move{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(150px,-80px) scale(1.3);
+    }
+}
+
+/* Floating particles */
+
+.particle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:white;
+    opacity:.4;
+    animation:float 12s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(110vh);
+    }
+    to{
+        transform:translateY(-20vh);
+    }
+}
+
+nav{
+    width:100%;
+    position:fixed;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    backdrop-filter:blur(20px);
+    background:rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.15);
+    z-index:999;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#5ee7ff;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    transition:.3s;
+    position:relative;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    width:0%;
+    height:2px;
+    left:0;
+    bottom:-5px;
+    background:#5ee7ff;
+    transition:.4s;
+}
+
+nav a:hover{
+    color:#5ee7ff;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+section{
+    width:100%;
+    min-height:100vh;
+    padding:120px 8%;
+}
+
+.hero{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    align-items:center;
+    gap:60px;
+}
+
+.glass{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(18px);
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    transition:.45s;
+}
+
+.glass:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 50px rgba(0,255,255,.18);
+}
+
+.hero-content{
+    padding:45px;
+}
+
+.hero-content h3{
+    color:#7be5ff;
+    margin-bottom:10px;
+    font-weight:400;
+}
+
+.hero-content h1{
+    font-size:60px;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    color:#d4d4d4;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+.hero-image{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.avatar{
+    width:360px;
+    height:360px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#00d2ff,#3a47d5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:130px;
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+    50%{
+        transform:translateY(-18px);
+    }
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    border-radius:50px;
+    color:white;
+    text-decoration:none;
+    background:linear-gradient(90deg,#00d2ff,#3a47d5);
+    transition:.4s;
+    margin-right:15px;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 30px #00d2ff88;
+}
+
+.btn-outline{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.3);
+}
+
+.title{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:60px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    padding:35px;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:150%;
+    height:150%;
+    background:linear-gradient(45deg,transparent,#ffffff15,transparent);
+    transform:rotate(35deg) translateX(-250%);
+    transition:.7s;
+}
+
+.card:hover::before{
+    transform:rotate(35deg) translateX(200%);
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#d6d6d6;
+    line-height:1.8;
+}
+
+.skill{
+    margin-top:18px;
+}
+
+.bar{
+    width:100%;
+    height:8px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    overflow:hidden;
+    margin-top:8px;
+}
+
+.fill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#00e5ff,#3a47d5);
+    animation:grow 2s ease;
+}
+
+@keyframes grow{
+    from{
+        width:0;
+    }
+}
+
+.projects .card{
+    cursor:pointer;
+}
+
+.projects .card:hover{
+    transform:translateY(-12px) scale(1.03);
+}
+
+footer{
+    padding:50px;
+    text-align:center;
+    color:#d5d5d5;
+}
+
+.socials{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.social{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    transition:.35s;
+}
+
+.social:hover{
+    transform:translateY(-8px) rotate(10deg);
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+    font-size:42px;
+}
+
+.avatar{
+    width:280px;
+    height:280px;
+    font-size:90px;
+}
+
+nav ul{
+    display:none;
+}
+
+}
+</style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
-    <header>
-        <h1>John Doe</h1>
-        <p>Web Developer & Tech Enthusiast</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <hr>
+<!-- Floating Particles -->
 
-    <!-- About Me Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <!-- Replace 'profile.jpg' with your actual image path or URL -->
-        <img src="https://placeholder.com" alt="John Doe's Profile Picture" width="150" height="150">
-        <p>Hello! I am a passionate developer who loves building structured, clean, and accessible web experiences. I focus on semantic code and user-friendly designs.</p>
-    </section>
-    <hr>
+<div class="particle" style="left:5%; animation-delay:0s;"></div>
+<div class="particle" style="left:20%; animation-delay:3s;"></div>
+<div class="particle" style="left:40%; animation-delay:6s;"></div>
+<div class="particle" style="left:65%; animation-delay:1s;"></div>
+<div class="particle" style="left:82%; animation-delay:4s;"></div>
+<div class="particle" style="left:92%; animation-delay:7s;"></div>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <ul>
-            <li><strong>Languages:</strong> HTML5, CSS3, JavaScript</li>
-            <li><strong>Frameworks:</strong> React, Bootstrap</li>
-            <li><strong>Tools & Platforms:</strong> Git, GitHub, VS Code</li>
-        </ul>
-    </section>
-    <hr>
+<nav>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>My Projects</h2>
-        
-        <!-- Project 1 -->
-        <article>
-            <h3>1. E-Commerce Landing Page</h3>
-            <p>A fully semantic markup structure for an online retail storefront built exclusively to practice advanced element positioning.</p>
-            <p><a href="https://github.com" target="_blank">View on GitHub</a> | <a href="https://example.com" target="_blank">Live Demo</a></p>
-        </article>
+<div class="logo">John<span>.</span></div>
 
-        <!-- Project 2 -->
-        <article>
-            <h3>2. Personal Blog Template</h3>
-            <p>An accessible blog template featuring clear content readability hierarchies and structural tables for post organization.</p>
-            <p><a href="https://github.com" target="_blank">View on GitHub</a></p>
-        </article>
-    </section>
-    <hr>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out via the form below or connect with me through my social profiles.</p>
-        
-        <!-- Interactive HTML Contact Form -->
-        <form action="#" method="POST">
-            <p>
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-            </p>
-            <p>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-            </p>
-            <p>
-                <label for="message">Message:</label><br>
-                <textarea id="message" name="message" rows="5" cols="30" placeholder="Type your message here..." required></textarea>
-            </p>
-            <button type="submit">Send Message</button>
-        </form>
+</nav>
 
-        <p><strong>Other Platforms:</strong></p>
-        <ul>
-            <li>Email: <a href="mailto:john.doe@example.com">john.doe@example.com</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com" target="_blank">://linkedin.com</a></li>
-        </ul>
-    </section>
-    <hr>
+<section class="hero" id="about">
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2026 John Doe. All rights reserved.</p>
-    </footer>
+<div class="hero-content glass">
+
+<h3>Hello, I'm</h3>
+
+<h1>John Doe</h1>
+
+<h3>Creative UI/UX Designer & Frontend Developer</h3>
+
+<p>
+I design elegant digital experiences with a focus on beautiful interfaces,
+smooth interactions, and modern aesthetics. My passion is crafting websites
+that are fast, engaging, and memorable.
+</p>
+
+<a href="#" class="btn">Hire Me</a>
+
+<a href="#" class="btn btn-outline">Download CV</a>
+
+</div>
+
+<div class="hero-image">
+
+<div class="avatar glass">
+👨‍💻
+</div>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<h1 class="title">Skills</h1>
+
+<div class="grid">
+
+<div class="card glass">
+<h2>Frontend</h2>
+
+<div class="skill">
+HTML / CSS
+<div class="bar">
+<div class="fill" style="width:95%"></div>
+</div>
+</div>
+
+<div class="skill">
+JavaScript
+<div class="bar">
+<div class="fill" style="width:90%"></div>
+</div>
+</div>
+
+<div class="skill">
+React
+<div class="bar">
+<div class="fill" style="width:88%"></div>
+</div>
+</div>
+
+</div>
+
+<div class="card glass">
+
+<h2>UI Design</h2>
+
+<p>
+Creating premium interfaces using glassmorphism,
+neumorphism, minimalism, responsive layouts,
+micro interactions and accessibility-first design.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<h2>Backend</h2>
+
+<p>
+Node.js • Express • MongoDB • REST APIs • Firebase
+with scalable architecture and clean code practices.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="projects" id="projects">
+
+<h1 class="title">Featured Projects</h1>
+
+<div class="grid">
+
+<div class="card glass">
+
+<h2>🚀 SaaS Dashboard</h2>
+
+<p>
+Modern analytics dashboard featuring animated charts,
+dark mode and responsive layouts.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<h2>🛍️ Ecommerce</h2>
+
+<p>
+Luxury shopping experience with product animations,
+glass cards and smooth checkout UI.
+</p>
+
+</div>
+
+<div class="card glass">
+
+<h2>📱 Mobile UI Kit</h2>
+
+<p>
+Premium mobile application design system built
+with consistency and elegant interactions.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h1 class="title">Let's Work Together</h1>
+
+<div class="glass" style="padding:60px;text-align:center;max-width:800px;margin:auto;">
+
+<h2 style="margin-bottom:20px;">Have an idea?</h2>
+
+<p style="line-height:1.8;color:#ddd;">
+Let's create something amazing together. Whether you need
+a beautiful website, dashboard, or product design,
+I'd love to hear about your project.
+</p>
+
+<a href="#" class="btn" style="margin-top:30px;">Get In Touch</a>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 John Doe • Crafted with HTML & CSS
+
+<div class="socials">
+
+<div class="social glass">🐦</div>
+<div class="social glass">💼</div>
+<div class="social glass">📷</div>
+<div class="social glass">💻</div>
+
+</div>
+
+</footer>
 
 </body>
 </html>

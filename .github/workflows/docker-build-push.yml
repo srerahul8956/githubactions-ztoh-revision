@@ -11,21 +11,15 @@ jobs:
 
         steps:
             - name: checkout code
-              env:
-                 NODE_OPTIONS: --trace-deprecation
               uses: actions/checkout@v4
               
             - name: Login to Docker Hub
-              env:
-                 NODE_OPTIONS: --trace-deprecation
               uses: docker/login-action@v3
               with:
                 username: ${{ vars.DOCKERHUB_USER }}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
 
             - name: Build & push to DockerHub
-              env:
-                 NODE_OPTIONS: --trace-deprecation
               uses: docker/build-push-action@v6
               with:
                 push: true

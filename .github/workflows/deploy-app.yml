@@ -2,7 +2,11 @@ name: Deploy Flask App via self hosted runner
 
 
 on:
-    workflow_dispatch: 
+  workflow_run:
+    workflows: ["Docker Build and Push"] # Change this to the exact 'name:' of your first workflow
+    types: completed
+    branches: main
+    
 
 jobs:
     deploy:

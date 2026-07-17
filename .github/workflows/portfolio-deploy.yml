@@ -13,12 +13,11 @@ permissions:
 
 jobs:
     deploy:
+        env:
+          name: github-pages
+          url: $ {{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
-
-        env: 
-            name: github-pages
-            url: $ {{ steps.deployment.outputs.page_url }}
-        
+       
         
         steps:
             # get access to your portfolio code via pre-build actions

@@ -1,14 +1,17 @@
 name: DevSecOps End to End pipeline
 
 on:
-    workflow_dispatch: 
+    push:
+        branches: main
 
 jobs:
     code-quality:
         uses: ./.github/workflows/code-quality.yml
-    
+
+      
     secrets-scan:
         uses: ./.github/workflows/secrets-scan.yml
+        secrets: inherit
 
     dependency-scan:
         uses: ./.github/workflows/dependency-scan.yml

@@ -8,6 +8,10 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
+            - name: Test SSH port
+              run: |
+               nc -vz ${{ secrets.EC2_SSH_HOST }} 22
+
             - name: SSH to Prod Server
               uses: appleboy/ssh-action@v1.0.3
               with:

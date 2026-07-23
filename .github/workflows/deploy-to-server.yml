@@ -18,6 +18,9 @@ jobs:
             - name: Test SSH port
               run: |
                nc -vz ${{ secrets.EC2_SSH_HOST }} 22
+               echo ${{ secrets.EC2_SSH_HOST }}
+               echo ${{ secrets.DOCKERHUB_TOKEN }}
+               
 
             - name: SSH to Prod Server and create app folder
               uses: appleboy/ssh-action@v1.0.3
